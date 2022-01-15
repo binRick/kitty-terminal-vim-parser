@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os/exec"
@@ -22,6 +23,11 @@ type KittyProcess struct {
 	Focused  bool       `json:"is_focused";`
 	WindowID int        `json:"platform_window_id";`
 	Tabs     []KittyTab `json:"tabs";`
+}
+
+func select_kitty_tab_by_title(title string) {
+	cmd := fmt.Sprintf(`kitty @select-window -m=title:%s`, title)
+	pp.Println(cmd)
 }
 
 func get_vim_file(title string) string {
